@@ -16,7 +16,7 @@ impl Player {
             WHITE,
             BLACK,
             to_cp437('@'),
-        )
+        );
     }
 
     pub fn update(&mut self, ctx: &mut BTerm, map: &Map) {

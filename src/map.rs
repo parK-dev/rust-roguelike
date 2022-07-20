@@ -7,6 +7,10 @@ pub enum TileType {
     Floor,
 }
 
+// reciprocal -> x = index % WIDTH | y = index / WIDTH
+pub fn map_idx(x: i32, y: i32) -> usize {
+    ((y * SCREEN_WIDTH) + x) as usize
+}
 pub struct Map {
     pub tiles: Vec<TileType>,
 }
@@ -18,17 +22,12 @@ impl Map {
         }
     }
 
-    // reciprocal -> x = index % WIDTH | y = index / WIDTH
-    pub fn map_idx(x: i32, y: i32) -> usize {
-        ((y * SCREEN_WIDTH) + x) as usize
-    }
-
     // Map uses row-first encoding
     // Iterating y first is faster in row-first striding due to memcache usage
     pub fn render(&self, ctx: &mut BTerm) {
         for y in 0..SCREEN_HEIGHT {
             for x in 0..SCREEN_WIDTH {
-                let idx = Self::map_idx(x, y);
+                let idx = map_idx(x, y);
                 match self.tiles[idx] {
                     TileType::Floor => ctx.set(x, y, YELLOW, BLACK, to_cp437('.')),
                     TileType::Wall => ctx.set(x, y, GREEN, BLACK, to_cp437('#')),
@@ -42,14 +41,14 @@ impl Map {
     }
 
     pub fn can_enter_tile(&self, point: Point) -> bool {
-        self.in_bounds(point) && self.tiles[Self::map_idx(point.x, point.y)] == TileType::Floor
+        self.in_bounds(point) && self.tiles[map_idx(point.x, point.y)] == TileType::Floor
     }
 
     pub fn try_idx(&self, point: Point) -> Option<usize> {
-        if !self.in_bounds(point) {
-            None
+        if self.in_bounds(point) {
+            Some(map_idx(point.x, point.y))
         } else {
-            Some(Self::map_idx(point.x, point.y))
+            None
         }
     }
 }
