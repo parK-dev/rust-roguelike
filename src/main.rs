@@ -1,10 +1,14 @@
 #![warn(clippy::all, clippy::pedantic)]
+
+// TODO: Implement Turn-based system
+
 mod camera;
 mod components;
 mod map;
 mod map_builder;
 mod spawner;
 mod systems;
+mod turn_state;
 mod prelude {
     pub const SCREEN_WIDTH: i32 = 80;
     pub const SCREEN_HEIGHT: i32 = 50;
@@ -15,6 +19,7 @@ mod prelude {
     pub use legion::systems::CommandBuffer;
     pub use legion::world::*;
     pub use legion::*;
+    pub use crate::turn_state::*;
 }
 use prelude::*;
 struct State {
@@ -38,6 +43,7 @@ impl State {
             .for_each(|pos| spawn_monster(&mut ecs, &mut rng, pos));
         resources.insert(map_builder.map);
         resources.insert(Camera::new(map_builder.player_start));
+        resources.insert(TurnState::AwaitingInput);
         Self {
             ecs,
             resources,
