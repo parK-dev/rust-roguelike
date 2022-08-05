@@ -1,5 +1,4 @@
 #![warn(clippy::all, clippy::pedantic)]
-//NEXT: Adding Monster
 mod camera;
 mod components;
 mod map;
