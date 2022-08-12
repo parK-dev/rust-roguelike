@@ -36,7 +36,8 @@ impl State {
         let map_builder = MapBuilder::new(&mut rng);
         spawn_player(&mut ecs, map_builder.player_start);
         spawn_amulet(&mut ecs, map_builder.amulet_start);
-        map_builder.monster_spawns
+        map_builder
+            .monster_spawns
             .iter()
             .for_each(|pos| spawn_monster(&mut ecs, &mut rng, *pos));
         resources.insert(map_builder.map);
@@ -106,7 +107,8 @@ impl State {
         let map_builder = MapBuilder::new(&mut rng);
         spawn_player(&mut self.ecs, map_builder.player_start);
         spawn_amulet(&mut self.ecs, map_builder.amulet_start);
-        map_builder.monster_spawns
+        map_builder
+            .monster_spawns
             .iter()
             .for_each(|pos| spawn_monster(&mut self.ecs, &mut rng, *pos));
         self.resources.insert(map_builder.map);
