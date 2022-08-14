@@ -53,7 +53,7 @@ pub fn hud(ecs: &mut SubWorld) {
         .next()
         .unwrap();
     draw_batch.print_color_right(
-        Point::new(SCREEN_WIDTH * 2 , 1),
+        Point::new(SCREEN_WIDTH * 2 , 2),
         format!("Dungeon Level: {}", map_level + 1),
         ColorPair::new(YELLOW, BLACK)
     );
