@@ -11,3 +11,4 @@ Features:
  - Data-driven entity spawning using a .ron template
  - Heads-up display for game information
  - Item toolbar
+ - WASM-readiness for web deployment
