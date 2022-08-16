@@ -15,4 +15,4 @@ Features:
 
 To try the game you can:
 - Download the park-dungeon-crawler.zip file and run the executable.
-- Clone the repo and launch the game using ``` cargo run --release ``` (Requires Rust to be installed on your machine)
+- Clone the repo and launch the game using ``` cargo run --release ``` (Requires Rust and Cargo to be installed on your machine)
