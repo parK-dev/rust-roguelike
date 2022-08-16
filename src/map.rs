@@ -5,7 +5,7 @@ const NUM_TILES: usize = (SCREEN_WIDTH * SCREEN_HEIGHT) as usize;
 pub enum TileType {
     Wall,
     Floor,
-    Exit
+    Exit,
 }
 
 // reciprocal -> x = index % WIDTH | y = index / WIDTH
@@ -21,7 +21,7 @@ impl Map {
     pub fn new() -> Self {
         Self {
             tiles: vec![TileType::Floor; NUM_TILES], // create NUM_TILES number of entries each set to TileType::Floor
-            revealed_tiles: vec![false; NUM_TILES]
+            revealed_tiles: vec![false; NUM_TILES],
         }
     }
 
@@ -30,10 +30,9 @@ impl Map {
     }
 
     pub fn can_enter_tile(&self, point: Point) -> bool {
-        self.in_bounds(point) && (
-            self.tiles[map_idx(point.x, point.y)] == TileType::Floor ||
-            self.tiles[map_idx(point.x, point.y)] == TileType::Exit
-        )
+        self.in_bounds(point)
+            && (self.tiles[map_idx(point.x, point.y)] == TileType::Floor
+                || self.tiles[map_idx(point.x, point.y)] == TileType::Exit)
     }
 
     pub fn try_idx(&self, point: Point) -> Option<usize> {

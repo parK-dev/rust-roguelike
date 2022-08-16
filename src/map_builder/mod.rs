@@ -43,7 +43,7 @@ impl MapBuilder {
         apply_prefab(&mut mb, rng);
         mb.theme = match rng.range(0, 2) {
             0 => DungeonTheme::new(),
-            _ => ForestTheme::new()
+            _ => ForestTheme::new(),
         };
         mb
     }

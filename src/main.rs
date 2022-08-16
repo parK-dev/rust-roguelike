@@ -41,12 +41,7 @@ impl State {
         // spawn_amulet(&mut ecs, map_builder.amulet_start);
         let exit_idx = map_builder.map.point2d_to_index(map_builder.amulet_start);
         map_builder.map.tiles[exit_idx] = TileType::Exit;
-        spawn_level(
-            &mut ecs,
-            &mut rng,
-            0,
-            &map_builder.monster_spawns
-        );
+        spawn_level(&mut ecs, &mut rng, 0, &map_builder.monster_spawns);
         resources.insert(map_builder.map);
         resources.insert(Camera::new(map_builder.player_start));
         resources.insert(TurnState::AwaitingInput);
@@ -117,12 +112,7 @@ impl State {
         // spawn_amulet(&mut self.ecs, map_builder.amulet_start);
         let exit_idx = map_builder.map.point2d_to_index(map_builder.amulet_start);
         map_builder.map.tiles[exit_idx] = TileType::Exit;
-        spawn_level(
-            &mut self.ecs,
-            &mut rng,
-            0,
-            &map_builder.monster_spawns
-        );
+        spawn_level(&mut self.ecs, &mut rng, 0, &map_builder.monster_spawns);
         self.resources.insert(map_builder.map);
         self.resources.insert(Camera::new(map_builder.player_start));
         self.resources.insert(TurnState::AwaitingInput);
@@ -141,7 +131,9 @@ impl State {
             .iter(&self.ecs)
             .filter(|(_e, carry)| carry.0 == player_entity)
             .map(|(e, _carry)| *e)
-            .for_each(|e| { entities_to_keep.insert(e); });
+            .for_each(|e| {
+                entities_to_keep.insert(e);
+            });
 
         let mut cb = CommandBuffer::new(&self.ecs);
         for e in Entity::query().iter(&self.ecs) {
@@ -167,8 +159,7 @@ impl State {
                 map_level = player.map_level;
                 pos.x = map_builder.player_start.x;
                 pos.y = map_builder.player_start.y;
-            }
-        );
+            });
 
         if map_level == 2 {
             spawn_amulet(&mut self.ecs, map_builder.amulet_start);
@@ -181,9 +172,9 @@ impl State {
             &mut self.ecs,
             &mut rng,
             map_level as usize,
-            &map_builder.monster_spawns
+            &map_builder.monster_spawns,
         );
-        
+
         self.resources.insert(map_builder.map);
         self.resources.insert(Camera::new(map_builder.player_start));
         self.resources.insert(TurnState::AwaitingInput);

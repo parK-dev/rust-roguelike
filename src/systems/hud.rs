@@ -39,25 +39,21 @@ pub fn hud(ecs: &mut SubWorld) {
         .iter(ecs)
         .filter(|(_, _, carried)| carried.0 == player)
         .for_each(|(_, name, _)| {
-            draw_batch.print(
-                Point::new(3, y),
-                format!("{} : {}", y-3, &name.0)
-            );
+            draw_batch.print(Point::new(3, y), format!("{} : {}", y - 3, &name.0));
             y += 1;
-        }
-    );
-    
+        });
+
     let (_player, map_level) = <(Entity, &Player)>::query()
         .iter(ecs)
         .map(|(entity, player)| (*entity, player.map_level))
         .next()
         .unwrap();
     draw_batch.print_color_right(
-        Point::new(SCREEN_WIDTH * 2 , 2),
+        Point::new(SCREEN_WIDTH * 2, 2),
         format!("Dungeon Level: {}", map_level + 1),
-        ColorPair::new(YELLOW, BLACK)
+        ColorPair::new(YELLOW, BLACK),
     );
-    
+
     if y > 3 {
         draw_batch.print_color(Point::new(3, 2), "Inventory", ColorPair::new(YELLOW, BLACK));
     }
