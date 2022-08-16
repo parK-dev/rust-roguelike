@@ -8,6 +8,6 @@ lto = "thin"
 
 [dependencies]
 bracket-lib = "~0.8.1"
-legion = "=0.3.1"
+legion = { version = "=0.3.1", default-features = false, features = ["wasm-bindgen", "codegen"] }
 serde = { version = "=1.0.115" }
 ron = "=0.7.1"
