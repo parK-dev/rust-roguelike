@@ -12,3 +12,7 @@ Features:
  - Heads-up display for game information
  - Item toolbar
  - WASM-readiness for web deployment
+
+To try the game you can:
+- Download the park-dungeon-crawler.zip file and run the executable.
+- Clone the repo and launch the game using ``` cargo run --release ``` (Requires Rust to be installed on your machine)
