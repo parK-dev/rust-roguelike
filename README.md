@@ -3,8 +3,9 @@ Dungeon Crawler Game Made in Rust
 
 Features:
  - Entity Component System
- - Precedural Map Generation (Cellular Automata, DrunkardWalk, Room&Corridors)
- - AI Pathfinding for monsters to track players
+ - Procedural Map Generation (Cellular Automata, DrunkardWalk, Room&Corridors)
+ - AI Pathfinding for monsters to track player
+ - Turn-based combat system
  - Field of vision (Player and Monster)
  - Items with effects such as weapons, maps and potions
  - Multiple levels
@@ -16,3 +17,14 @@ Features:
 To try the game you can:
 - Download the park-dungeon-crawler.zip file and run the executable.
 - Clone the repo and launch the game using ``` cargo run --release ``` (Requires Rust and Cargo to be installed on your machine)
+
+Controls:
+- Use the arrows to move
+- Use 'g' to pickup items on the floor
+- Use [1-9] to use carried items
+
+Combat:
+- Walk into an enemy to inflict damage.
+
+Victory condition:
+- Explore the dungeon and fight off monsters until you find the Amulet.
